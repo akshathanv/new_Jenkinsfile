@@ -9,7 +9,7 @@
   docker.image('maven:3.3.3-jdk-8').inside {
   sh 'mvn -B clean install'
 }*/
-node {
+node{
     stage 'Containerprep'
     // do the thing in the container
     docker.image('maven:3.3.3-jdk-8').inside {
