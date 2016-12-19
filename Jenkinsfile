@@ -10,7 +10,7 @@
   sh 'mvn -B clean install'
 }*/
 node {
-    stage "Container Prep"
+    stage 'Container Prep'
     // do the thing in the container
     docker.image('maven:3.3.3-jdk-8').inside {
         // get the codez
