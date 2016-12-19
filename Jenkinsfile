@@ -1,4 +1,4 @@
-node{
+/*node{
   stage 'Checkout'
   git url: 'https://github.com/akshathanv/Jpetstore_maven.git'   
   // Clean any locally modified files and ensure we are actually on origin/master
@@ -8,4 +8,17 @@ node{
   
   docker.image('maven:3.3.3-jdk-8').inside {
   sh 'mvn -B clean install'
-}
+}*/
+node {
+    stage "Container Prep"
+    // do the thing in the container
+    docker.image('maven:3.3.3-jdk-8').inside {
+        // get the codez
+        stage 'Checkout'
+        git url: 'https://github.com/akshathanv/Jpetstore_maven.git'
+        sh "git clean -f && git reset --hard origin/master"
+        stage 'Build'
+        // Do the build
+        sh "./mvnw clean install"
+    }
+} 
